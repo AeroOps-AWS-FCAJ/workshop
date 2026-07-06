@@ -15,7 +15,7 @@ home = [ "HTML", "RSS", "JSON"]
   themeVariant = "workshop"
   # Git hub repo link
   editURL = ""
-  description = "Secure hybrid access to Amazon S3 using VPC endpoints"
+  description = "Build a serverless document ingestion and AI processing platform on AWS"
   author = "AeroOps AWS FCAJ"
   showVisitedLinks = true
   disableBreadcrumb = false
@@ -23,7 +23,7 @@ home = [ "HTML", "RSS", "JSON"]
   
 [Languages]
 [Languages.en]
-title = "Secure Hybrid Access to S3"
+title = "DocuFlow AI Workshop"
 weight = 1
 languageName = "English"
 
@@ -40,7 +40,7 @@ url = "https://www.facebook.com/groups/awsstudygroupfcj"
 weight = 20
 
 [Languages.vi]
-title = "Truy cập Hybrid an toàn đến S3"
+title = "Workshop DocuFlow AI"
 weight = 2
 languageName = "Tiếng Việt"
 
