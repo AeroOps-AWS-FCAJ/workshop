@@ -1,0 +1,12 @@
+# Hugo build output and generated lock file
+public/
+.hugo_build.lock
+
+# Local editor and Codex workspace metadata
+.vscode/
+.agents/
+.codex/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
