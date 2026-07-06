@@ -1,6 +1,7 @@
-# Secure Hybrid Access to Amazon S3
+# DocuFlow AI Workshop
 
-A bilingual Hugo workshop for configuring private Amazon S3 access from an Amazon VPC and a simulated on-premises environment using Gateway and Interface VPC Endpoints.
+A bilingual Hugo workshop for building a serverless invoice and document processing platform on AWS. It covers Amazon S3, DynamoDB, Lambda, SQS, EventBridge, Step Functions, Textract, API Gateway, Cognito, observability, governance, and end-to-end testing.
+
 
 ## Run locally
 
@@ -19,3 +20,6 @@ hugo --minify
 ```
 
 The generated site is written to `public/`. Pushes to `main` are deployed to the `gh-pages` branch by GitHub Actions.
+
+
+#AeroOps Team
