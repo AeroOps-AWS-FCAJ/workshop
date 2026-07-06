@@ -22,4 +22,4 @@ hugo --minify
 The generated site is written to `public/`. Pushes to `main` are deployed to the `gh-pages` branch by GitHub Actions.
 
 
-#AeroOps Team
+# AeroOps Team
