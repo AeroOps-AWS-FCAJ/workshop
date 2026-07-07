@@ -5,9 +5,6 @@ weight: 1
 chapter: false
 pre: " <b> 5.1. </b> "
 ---
-
-# EVENT SUMMARY REPORT: INTRODUCTION TO DOCUFLOW AI
-
 ### 1. Use Case & Solution Overview
 In the era of digital transformation, manually entering data from invoices and receipts remains a significant bottleneck (pain point) for finance and SME operation teams. Manual transcription from scanned images or PDF files into spreadsheets or ERP systems is time-consuming, error-prone (resulting in typos in vendor names, invoice dates, amounts, taxes, or currencies), and carries security risks such as the exposure of sensitive financial data or external API keys.
 

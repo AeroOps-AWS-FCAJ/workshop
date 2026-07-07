@@ -5,9 +5,6 @@ weight: 1
 chapter: false
 pre: " <b> 5.1. </b> "
 ---
-
-#  DOCUFLOW AI
-
 ### 1. Giới thiệu giải pháp (Use case)
 Trong thời đại chuyển đổi số, việc nhập liệu thủ công các loại hóa đơn, biên nhận (invoice/receipt) vẫn là một điểm nghẽn lớn (pain point) đối với các phòng ban tài chính kế toán hoặc vận hành của doanh nghiệp (finance/SME operation teams). Quy trình nhập tay từ ảnh quét hay file PDF vào bảng tính Excel hoặc hệ thống ERP thường tốn thời gian, dễ gây sai sót về số liệu (sai tên nhà cung cấp, ngày xuất, số tiền, thuế phí, loại tiền tệ) và gặp rủi ro rò rỉ dữ liệu tài chính hoặc API key.
 

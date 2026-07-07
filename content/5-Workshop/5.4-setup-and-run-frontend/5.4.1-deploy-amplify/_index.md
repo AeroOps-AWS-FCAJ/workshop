@@ -1,13 +1,10 @@
 ---
-title: "5.4.1 Deploy Frontend with AWS Amplify Hosting"
+title: "Deploy Frontend with AWS Amplify Hosting"
 date: 2024-01-01
 weight: 1
 chapter: false
 pre: " <b> 5.4.1. </b> "
 ---
-
-# Deploy Frontend with AWS Amplify Hosting
-
 Use AWS Amplify Hosting to publish the React/Vite frontend as a production web application. This step should be completed after the Cognito User Pool is created and after the API Gateway Invoke URL is available from section **5.7.3**.
 
 ---

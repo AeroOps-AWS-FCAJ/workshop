@@ -5,9 +5,6 @@ weight: 9
 chapter: false
 pre: " <b> 5.9. </b> "
 ---
-
-# End-to-End Testing
-
 ### 1. Goal
 Execute a complete integration test of the system from the frontend interface down to the background processing pipelines, verifying all distinct logic paths to collect testing evidence.
 

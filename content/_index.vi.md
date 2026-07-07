@@ -3,9 +3,6 @@ title: "Workshop DocuFlow AI"
 date: 2024-01-01
 chapter: false
 ---
-
-# Workshop DocuFlow AI
-
 ## Tổng quan
 
 Xây dựng giải pháp bóc tách hóa đơn và xử lý tài liệu thông minh trên AWS bằng kiến trúc serverless, Amazon Textract và mô hình AI bên ngoài.

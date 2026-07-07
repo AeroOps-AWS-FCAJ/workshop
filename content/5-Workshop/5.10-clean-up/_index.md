@@ -6,8 +6,6 @@ chapter: false
 pre: " <b> 5.10. </b> "
 ---
 
-# Clean Up
-
 ### 1. Goal
 Clean up and delete all deployed AWS resources after the workshop to avoid unwanted charges and verify solid project cost control.
 
@@ -20,22 +18,51 @@ AWS does not allow S3 buckets to be deleted if they contain objects. We must emp
    * `docuflow-dev-processed-<AWS_ACCOUNT_ID>-ap-southeast-1`
    * `docuflow-dev-cloudtrail-logs-<RANDOM_STRING>`
 2. For each bucket, select the checkbox next to its name -> Click **Empty** -> Type `permanently delete` to confirm.
+
+   ![Empty S3 Bucket](/images/5-Workshop/5.10-clean-up/empty-s3-bucket.png)
+
 3. Once empty, select the bucket -> Click **Delete** -> Type the name of the bucket to delete it permanently.
+
+   ![Delete S3 Bucket](/images/5-Workshop/5.10-clean-up/delete-s3-bucket.png)
 
 #### Step 2: Delete DynamoDB Documents Table
 1. Go to **DynamoDB** -> select **Tables** from the left sidebar.
+
+   ![DynamoDB Tables](/images/5-Workshop/5.10-clean-up/dynamodb-tables.png)
+
 2. Select the main project table: `docuflow-dev-documents-table`.
+
+   ![DynamoDB Select Table](/images/5-Workshop/5.10-clean-up/dynamodb-select-table.png)
+
 3. Click the **Delete** button in the top menu -> Type `confirm` in the confirmation dialog and click **Delete**.
 
+   ![DynamoDB Confirm Delete](/images/5-Workshop/5.10-clean-up/dynamodb-confirm-delete.png)
+
 #### Step 3: Delete Backend Lambda Functions
-1. Go to **Lambda** -> In the **Functions** tab, search for `docuflow-dev-` to list all project functions.
-2. Select all of these functions at once (includes API Data, AI Lambdas, Job Starter, and Validate).
-3. Click **Actions** -> Select **Delete** -> Type `confirm` and click **Delete**.
+1. Go to Lambda, select all the newly created functions.
+
+   ![Select Lambda Functions](/images/5-Workshop/5.10-clean-up/select-lambda-functions.png)
+
+2. In Actions, click the dropdown to select Delete.
+
+   ![Delete Lambda Functions](/images/5-Workshop/5.10-clean-up/delete-lambda-functions.png)
+
+3. After clicking Delete, a Delete functions screen will appear, type confirm to delete the newly created functions.
+
+   ![Confirm Lambda Delete](/images/5-Workshop/5.10-clean-up/confirm-lambda-delete.png)
 
 #### Step 4: Delete the Connected API Gateway
 1. Go to the **API Gateway Console**.
+
+   ![API Gateway Console](/images/5-Workshop/5.10-clean-up/api-gateway-console.png)
+
 2. Select the project API: `docuflow-dev-api`.
-3. Click the **Actions** dropdown in the top menu -> Select **Delete API** -> Confirm the action.
+
+   ![Select API Gateway](/images/5-Workshop/5.10-clean-up/select-api-gateway.png)
+
+3. Click the **Delete** button -> Confirm the action.
+
+   ![Delete API Gateway](/images/5-Workshop/5.10-clean-up/delete-api-gateway.png)
 
 #### Step 5: Delete CloudWatch Alarms
 1. Go to **CloudWatch** -> Choose **Alarms** -> **All alarms** in the left sidebar.
@@ -118,6 +145,19 @@ AWS does not allow S3 buckets to be deleted if they contain objects. We must emp
 5. Click the orange confirmation button. The key state will transition to `Pending deletion` and maintenance fees will freeze.
 
 ![image169.png](/images/5-Workshop/5.10-clean-up/image169.png)
+
+#### Step 13: Delete Cognito
+1. Go to the **Cognito Console**.
+
+   ![Cognito Console](/images/5-Workshop/5.10-clean-up/cognito-console.png)
+
+2. Select the User pool: `User pool - ...`.
+
+   ![Select Cognito User Pool](/images/5-Workshop/5.10-clean-up/select-cognito-user-pool.png)
+
+3. Click **Delete** on the top menu -> Check the prerequisite actions and type the pool name to confirm deletion.
+
+   ![Confirm Delete Cognito User Pool](/images/5-Workshop/5.10-clean-up/confirm-delete-cognito.png)
 
 ### 3. Expected Result
 * All billable AWS resources are deleted.

@@ -5,9 +5,6 @@ weight: 9
 chapter: false
 pre: " <b> 5.9. </b> "
 ---
-
-# Kiểm thử tích hợp End-to-End
-
 ### 1. Mục tiêu (Goal)
 Tiến hành chạy thử nghiệm liên thông toàn bộ hệ thống từ giao diện người dùng đến luồng xử lý ngầm, kiểm tra hoạt động của các nhánh xử lý logic của Step Functions và thu thập bằng chứng kiểm thử (evidence).
 

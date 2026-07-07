@@ -3,9 +3,6 @@ title: "DocuFlow AI Workshop"
 date: 2024-01-01
 chapter: false
 ---
-
-# DocuFlow AI Workshop
-
 ## Overview
 
 Build an intelligent invoice and document processing solution on AWS using serverless services, Amazon Textract, and an external AI model.
