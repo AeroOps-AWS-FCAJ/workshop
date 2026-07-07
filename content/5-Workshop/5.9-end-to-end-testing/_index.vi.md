@@ -19,7 +19,7 @@ Tiến hành chạy thử nghiệm liên thông toàn bộ hệ thống từ gia
   4. Hệ thống kích hoạt CloudWatch Alarm bắn cảnh báo lỗi sang SNS, gửi email cảnh báo về điện thoại/hộp thư Admin.
   5. Admin/Reviewer mở trang Phê duyệt (Reviewer Dashboard) trên UI, xem biểu mẫu chỉnh sửa thông tin bị nhận diện sai.
   6. Sau khi sửa lại số tiền và nhấn **Approve** (Duyệt), Frontend gọi API `review` Lambda cập nhật trạng thái bản ghi trong DynamoDB thành `APPROVED` và ghi đè kết quả `result.json` đã sửa lên S3.
-* **Bằng chứng**: Chụp giao diện Reviewer Form hiển thị các trường chỉnh sửa và ảnh email cảnh báo từ SNS.
+* **Bằng chứng**:
 
   ![Review Notification](/images/5-Workshop/5.9-end-to-end-testing/review-notification.png)
 
