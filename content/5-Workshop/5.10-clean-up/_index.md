@@ -46,6 +46,8 @@ AWS does not allow S3 buckets to be deleted if they contain objects. We must emp
    * `docuflow-dev-low-confidence-spike-alarm`
 3. Click **Actions** -> Select **Delete** -> click **Delete** to confirm.
 
+![image162.png](/images/5-Workshop/5.10-clean-up/image162.png)
+
 #### Step 6: Delete CloudWatch Log Groups
 1. Still in CloudWatch, choose **Logs** -> **Log groups**.
 2. Select the six log groups associated with your Lambda functions:
@@ -57,14 +59,21 @@ AWS does not allow S3 buckets to be deleted if they contain objects. We must emp
    * `/aws/lambda/docuflow-dev-ai-confidence-status-lambda`
 3. Click **Actions** -> Select **Delete log group(s)** -> Confirm the action.
 
+![image163.png](/images/5-Workshop/5.10-clean-up/image163.png)
+
 #### Step 7: Delete SNS Topics & SES Verified Identities
 1. **SNS Topic**: Go to **Simple Notification Service (SNS)** -> Select **Topics** -> select `docuflow-dev-notification-system-alerts-topic` -> Click **Delete** -> Type `delete me` to confirm.
+
+![image164.png](/images/5-Workshop/5.10-clean-up/image164.png)
+
 2. **SES Email Identity**: Go to **Simple Email Service (SES)** -> Select **Verified identities** -> select your verified email address -> Click **Delete** -> Confirm the deletion.
 
 #### Step 8: Stop & Delete CloudTrail Audit Logs
 1. Go to **CloudTrail** -> Select **Trails** on the left menu.
 2. Click on the project trail: `docuflow-dev-audit-trail`.
 3. Click **Stop logging** -> then click **Delete** to remove the trail.
+
+![image165.png](/images/5-Workshop/5.10-clean-up/image165.png)
 
 #### Step 9: Delete AWS Budgets cost alerts
 1. Search for **Budgets** in the AWS console -> Select **AWS Budgets**.
@@ -74,10 +83,14 @@ AWS does not allow S3 buckets to be deleted if they contain objects. We must emp
    * `DocuFlow-FreeTier-Watch`
 3. Click **Actions** -> Select **Delete** -> Confirm the deletion.
 
+![image166.png](/images/5-Workshop/5.10-clean-up/image166.png)
+
 #### Step 10: Delete external AI credentials in Secrets Manager
 1. Go to **Secrets Manager** -> select the secret: `docuflow-dev-external-ai-api-key`.
 2. Click **Actions** -> Select **Delete secret**.
 3. Set the waiting period to the minimum of **7 days** to disable the secret immediately and avoid future billing.
+
+![image167.png](/images/5-Workshop/5.10-clean-up/image167.png)
 
 #### Step 11: Remove IAM Roles & Policies
 1. Go to **IAM** -> Select **Roles** in the left sidebar.
@@ -92,6 +105,9 @@ AWS does not allow S3 buckets to be deleted if they contain objects. We must emp
    * `docuflow-dev-workflow-validate-lambda-role`
    * `docuflow-dev-ai-confidence-status-lambda-role`
 3. Click **Delete** and type the role names to confirm.
+
+![image168.png](/images/5-Workshop/5.10-clean-up/image168.png)
+
 4. Go to **Policies** -> Search and delete all custom policies (e.g. `docuflow-dev-ingestion-s3-raw-access-policy`, `docuflow-dev-ai-secret-read-policy`, etc.).
 
 #### Step 12: Schedule KMS Key Deletion (Must be performed last)
@@ -100,6 +116,8 @@ AWS does not allow S3 buckets to be deleted if they contain objects. We must emp
 3. Click **Key actions** -> Select **Schedule key deletion**.
 4. Set the waiting period to **7 days** (the minimum allowed waiting period by AWS).
 5. Click the orange confirmation button. The key state will transition to `Pending deletion` and maintenance fees will freeze.
+
+![image169.png](/images/5-Workshop/5.10-clean-up/image169.png)
 
 ### 3. Expected Result
 * All billable AWS resources are deleted.
