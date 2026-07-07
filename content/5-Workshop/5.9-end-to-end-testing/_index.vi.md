@@ -10,21 +10,7 @@ Tiến hành chạy thử nghiệm liên thông toàn bộ hệ thống từ gia
 
 ### 2. Các kịch bản kiểm thử (Test Cases)
 
-#### Kịch bản 1: Luồng trích xuất thành công (Happy Path - Hóa đơn rõ nét)
-* **Mô phỏng thao tác**: Người dùng đăng nhập qua Cognito trên UI, tải lên tệp tin `invoice.pdf` có chất lượng hình ảnh sắc nét.
-* **Quy trình hệ thống**: 
-  1. Frontend gửi yêu cầu sinh Presigned URL từ `upload-url` Lambda.
-  2. Frontend tải tệp gốc lên S3 Raw Bucket.
-  3. S3 bắn sự kiện tải tệp -> EventBridge chuyển tiếp -> SQS Queue nhận tin nhắn.
-  4. Job Starter Lambda poll tin nhắn SQS, ra lệnh khởi chạy Step Functions.
-  5. Validate Lambda kiểm tra tệp tin hợp lệ.
-  6. Textract Lambda gọi API `AnalyzeExpense` lấy trường thô.
-  7. AI Proxy Lambda gọi External AI chuẩn hóa cấu trúc dữ liệu thô thành JSON.
-  8. Confidence & Status Lambda tính toán điểm tin cậy trung bình đạt trên 90% (ví dụ: `0.99`). Hệ thống cập nhật bản ghi DynamoDB thành trạng thái `EXTRACTED` và lưu file `result.json` vào S3 Processed.
-  9. Frontend tự động làm mới và tải dữ liệu kết quả hiển thị lên bảng Dashboard.
-* **Bằng chứng**: Chụp màn hình trang chi tiết tài liệu hiển thị trạng thái `EXTRACTED` cùng đầy đủ bảng thông tin trích xuất.
-
-#### Kịch bản 2: Luồng kiểm duyệt thủ công (Low-Confidence Path - Hóa đơn mờ/thiếu trường)
+#### Kịch bản 1: Luồng kiểm duyệt thủ công (Low-Confidence Path - Hóa đơn mờ/thiếu trường)
 * **Mô phỏng thao tác**: Tải lên tệp tin hóa đơn bị mờ hoặc thiếu một số trường quan trọng như tổng tiền (totalAmount).
 * **Quy trình hệ thống**:
   1. Các bước xử lý trung gian diễn ra tương tự kịch bản Happy Path.
@@ -35,17 +21,24 @@ Tiến hành chạy thử nghiệm liên thông toàn bộ hệ thống từ gia
   6. Sau khi sửa lại số tiền và nhấn **Approve** (Duyệt), Frontend gọi API `review` Lambda cập nhật trạng thái bản ghi trong DynamoDB thành `APPROVED` và ghi đè kết quả `result.json` đã sửa lên S3.
 * **Bằng chứng**: Chụp giao diện Reviewer Form hiển thị các trường chỉnh sửa và ảnh email cảnh báo từ SNS.
 
-#### Kịch bản 3: Luồng xử lý lỗi (Failed Path - File sai định dạng/quá tải)
+  ![Review Notification](/images/5-Workshop/5.9-end-to-end-testing/review-notification.png)
+
+  ![Reviewer Dashboard](/images/5-Workshop/5.9-end-to-end-testing/human-review-dashboard.png)
+
+  ![Low Confidence Fields](/images/5-Workshop/5.9-end-to-end-testing/low-confidence-fields.png)
+
+  ![Review Timeline](/images/5-Workshop/5.9-end-to-end-testing/review-timeline.png)
+
+#### Kịch bản 2: Luồng xử lý lỗi (Failed Path - File sai định dạng/quá tải)
 * **Mô phỏng thao tác**: Tải lên tệp tin định dạng `.txt` (hoặc tệp ảnh dung lượng > 10MB).
 * **Quy trình hệ thống**:
-  1. Tệp tin được đẩy lên S3 Raw bucket và kích hoạt luồng Step Functions.
-  2. Tại bước đầu tiên, Validate Lambda thực hiện kiểm duyệt và phát hiện tệp tin vi phạm luật nghiệp vụ (sai định dạng tệp tin cho phép).
-  3. Validate Lambda thực hiện cập nhật trạng thái bản ghi trong DynamoDB thành `FAILED`, ghi rõ lý do lỗi (ví dụ: `INVALID_FILE_TYPE`).
-  4. Lambda quăng lỗi, Step Functions catch lỗi và chuyển nhánh sang **Failed state** để dừng chạy.
-  5. CloudWatch Alarm kích hoạt SNS gửi email cảnh báo lỗi hệ thống cho Admin.
-* **Bằng chứng**: Chụp màn hình sơ đồ Step Functions hiển thị nút đỏ (Fail) tại bước Validate và ảnh bản ghi DynamoDB có status `FAILED`.
+  1. Frontend kiểm tra file đúng định dạng chưa.
+  2. Nếu sai định dạng, Frontend sẽ hiển thị file sai định dạng và không cho upload lên
+* **Bằng chứng**: 
 
-#### Kịch bản 4: Tin nhắn rơi vào hàng đợi chết (SQS DLQ Path)
+  ![Invalid File Format](/images/5-Workshop/5.9-end-to-end-testing/invalid-file-format.png)
+
+#### Kịch bản 3: Tin nhắn rơi vào hàng đợi chết (SQS DLQ Path)
 * **Mô phỏng thao tác**: Thu hồi quyền đọc Secrets Manager của hàm AI Proxy Lambda để mô phỏng lỗi sập logic liên tục khi gọi API.
 * **Quy trình hệ thống**:
   1. Khi người dùng upload tệp tin mới, SQS nhận tin nhắn và gọi Job Starter Lambda kích hoạt Step Functions.
@@ -56,6 +49,6 @@ Tiến hành chạy thử nghiệm liên thông toàn bộ hệ thống từ gia
 * **Bằng chứng**: Chụp màn hình SQS Console hiển thị chỉ số tin nhắn hiển thị tại DLQ > 0.
 
 ### 3. Kết quả mong đợi (Expected Result)
-* Luồng xử lý bất đồng bộ hoạt động chính xác cho cả 4 kịch bản kiểm thử.
+* Luồng xử lý bất đồng bộ hoạt động chính xác cho cả 3 kịch bản kiểm thử.
 * Cơ chế ghi vết và gửi cảnh báo tự động hoạt động mượt mà khi xảy ra lỗi hoặc khi có hóa đơn cần review.
 * Dữ liệu đồng bộ và lưu trữ nhất quán giữa S3 và DynamoDB.
